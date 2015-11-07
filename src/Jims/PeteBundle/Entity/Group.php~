@@ -1,0 +1,194 @@
+<?php
+namespace Jims\PeteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class Group
+ * @package JimsPeteBundle\Entity
+ * @ORM\Entity(repositoryClass="GroupRepository")
+ * @ORM\Table(name="group")
+ * @ORM\Table(options={"collate"="utf8mb4_unicode_ci", "charset"="utf8mb4"})
+ */
+class Group
+{
+    /**
+     * @var
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    /**
+     * @var
+     * @ORM\Column(type="string",length=100)
+     *
+     */
+    protected $groupName;
+    /**
+     * @var
+     * @ORM\Column(type="boolean",options={"default"=0})
+     */
+    protected $isAvailable;
+    /**
+     * @var
+     * @ORM\Column(type="datetime")
+     */
+    protected $creatAt;
+    /**
+     * @var
+     * @ORM\Column(type="datetime")
+     */
+    protected $updateAt;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="groups")
+     */
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set groupName
+     *
+     * @param string $groupName
+     *
+     * @return Group
+     */
+    public function setGroupName($groupName)
+    {
+        $this->groupName = $groupName;
+
+        return $this;
+    }
+
+    /**
+     * Get groupName
+     *
+     * @return string
+     */
+    public function getGroupName()
+    {
+        return $this->groupName;
+    }
+
+    /**
+     * Set isAvailable
+     *
+     * @param integer $isAvailable
+     *
+     * @return Group
+     */
+    public function setIsAvailable($isAvailable)
+    {
+        $this->isAvailable = $isAvailable;
+
+        return $this;
+    }
+
+    /**
+     * Get isAvailable
+     *
+     * @return integer
+     */
+    public function getIsAvailable()
+    {
+        return $this->isAvailable;
+    }
+
+    /**
+     * Set creatAt
+     *
+     * @param \DateTime $creatAt
+     *
+     * @return Group
+     */
+    public function setCreatAt($creatAt)
+    {
+        $this->creatAt = $creatAt;
+
+        return $this;
+    }
+
+    /**
+     * Get creatAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatAt()
+    {
+        return $this->creatAt;
+    }
+
+    /**
+     * Set updateAt
+     *
+     * @param \DateTime $updateAt
+     *
+     * @return Group
+     */
+    public function setUpdateAt($updateAt)
+    {
+        $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updateAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdateAt()
+    {
+        return $this->updateAt;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \Jims\PeteBundle\Entity\User $user
+     *
+     * @return Group
+     */
+    public function addUser(\Jims\PeteBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \Jims\PeteBundle\Entity\User $user
+     */
+    public function removeUser(\Jims\PeteBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+}

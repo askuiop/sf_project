@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    {#<link href="{{ asset('bundles/acmeweb/css/yourstylesheet.css') }}" rel="stylesheet" type="text/css" />#}
+
+    {% block stylesheets %}
+        {% stylesheets
+        "bundles/jimspete/css/my.css"
+        filter='cssrewrite'
+
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endblock %}
+
+
+</head>
+<body>
+{% image '@JimsPeteBundle/Resources/public/images/xxx.jpg'
+%}
+<img src="{{ asset_url }}" />
+{% endimage %}
+nothing!
+</body>
+</html>

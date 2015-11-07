@@ -1,0 +1,12 @@
+jims_pete:
+    resource: "@JimsPeteBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}
+    requirements:
+        _locale: %app_locales%
+    defaults:
+        _locale: %locale%
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

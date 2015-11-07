@@ -1,0 +1,21 @@
+{% extends 'JimsPeteBundle:default:layout.html.twig' %}
+
+{% block res %}
+    {% javascripts "@JimsPeteBundle/Resources/public/test/*" %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% stylesheets "%@JimsPeteBundle/Resources/public/test/*" %}
+    <link rel="stylesheet"  href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block container_top %}
+    {{ c }}
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <p>&copy; Company 2015</p>
+    </footer>
+{% endblock %}

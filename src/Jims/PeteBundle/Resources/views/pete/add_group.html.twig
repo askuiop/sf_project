@@ -1,0 +1,18 @@
+{% extends 'JimsPeteBundle:pete:layout.html.twig' %}
+
+{#{% form_theme form 'JimsPeteBundle:form:fields.html.twig' %}#}
+
+{% block container %}
+    <h1>xxx22:{{ form_errors(form) }}
+        {% for item in form_errors(form) %}
+            {{ item }}
+        {% endfor %}
+    </h1>
+    <h4>添加组 {{ msg }}</h4>
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+
+
+    {{ form_row(form) }}
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'JimsPeteBundle:pete:layout.html.twig' %}
+
+{% block container %}
+    {% if msg %}
+        <P>消息：{{ msg }}</P>
+    {% endif %}
+    <h4>添加用户</h4>
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form) }}
+
+
+
+    {{ form_end(form) }}
+
+
+{% endblock %}

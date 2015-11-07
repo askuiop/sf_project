@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!--
+    <services>
+        <service id="jims_pete.example" class="Jims\PeteBundle\Example">
+            <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+        </service>
+    </services>
+    -->
+    <services>
+        <service id="jims_pete.sgogo" class="Jims\PeteBundle\Service\Sgogo">
+            <!--<argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>-->
+        </service>
+        <service id="jims_pete.spp" class="Jims\PeteBundle\Service\Spp">
+            <argument type="service" id="jims_pete.sgogo" />
+        </service>
+        <service id="webservice_user_provider" class="Jims\PeteBundle\Security\WebserviceUserProvider">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+    </services>
+</container>
