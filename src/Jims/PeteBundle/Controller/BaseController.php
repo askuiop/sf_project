@@ -16,4 +16,14 @@ class BaseController extends Controller
     {
         return 'fuch you!';
     }
+    /**
+     * @Route("/stest")
+     * @Template("")
+     */
+    public function sssAction()
+    {
+        $service_test = $this->get('jims_pete.spp');
+        $service_test->say();
+        return new Response('<br>done!');
+    }
 }

@@ -2,12 +2,15 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: @JimsPeteBundle/Resources/config/admin.yml }
+
+
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     app_locales: cn|en
-    locale: cn
+    locale: zh_CN
 
 framework:
     #esi:             ~
@@ -25,11 +28,11 @@ framework:
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_hosts:   ~
-    trusted_proxies: ~
+    trusted_proxies:  [127.0.0.1]
     session:
         # handler_id set to null will use default session handler from php.ini
         #handler_id:  snc_redis.session.client
-        handler_id:  ~
+        #handler_id:  ~
     fragments:       ~
     http_method_override: true
 
@@ -37,6 +40,12 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - 'SonataCoreBundle:Form:datepicker.html.twig'
+    form_themes:
+            - 'JimsUiopBundle:Form:form_ueditor_type.html.twig'
+            - 'JimsUiopBundle:Form:form_type_test.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -73,11 +82,11 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
         # enable metadata caching
-        metadata_cache_driver: redis
+        #metadata_cache_driver: redis
         # enable query caching
-        query_cache_driver: redis
+        #query_cache_driver: redis
         second_level_cache:
-            enabled: true
+            enabled: false
         #    log_enabled: true
         #    region_cache_driver: ?
 
@@ -90,45 +99,70 @@ swiftmailer:
     spool:     { type: memory }
 
 
-snc_redis:
-    # configure predis as client
-    clients:
-        default:
-            type: predis
-            alias: default
-            dsn: redis://192.168.58.90
-            logging: %kernel.debug%
-        session:
-            type: predis
-            alias: session
-            dsn: redis://192.168.58.90
-        cache:
-            type: predis
-            alias: cache
-            dsn: redis://secret@localhost/1
-            options:
-                profile: 2.2
-                connection_timeout: 10
-                read_write_timeout: 30
-        doctrine:
-            type: predis
-            alias: doctrine
-            dsn: redis://192.168.58.90
-    # configure doctrine caching
-    doctrine:
-        metadata_cache:
-            client: doctrine
-            entity_manager: default
-            document_manager: default
-        result_cache:
-            client: doctrine
-            #entity_manager: [default]
-            entity_manager: [default, read]
-        query_cache:
-            client: doctrine
-            entity_manager: default
-    session:
-        client: session
-        prefix: sf_project
-        use_as_default: true
-        ttl: 1200
+#snc_redis:
+#    # configure predis as client
+#    clients:
+#        default:
+#            type: predis
+#            alias: default
+#            options:
+#                prefix : "sf_def:"
+#            dsn: redis://192.168.58.90
+#            logging: %kernel.debug%
+#        session:
+#            type: predis
+#            alias: session
+#            dsn: redis://192.168.58.90
+#        cache:
+#            type: predis
+#            alias: cache
+#            dsn: redis://secret@localhost/1
+#            options:
+#                profile: 2.2
+#                connection_timeout: 10
+#                read_write_timeout: 30
+#        doctrine:
+#            type: predis
+#            alias: doctrine
+#            options:
+#                prefix : "sf_doc:"
+#            dsn: redis://192.168.58.90
+#    # configure doctrine caching
+#    doctrine:
+#        metadata_cache:
+#            client: doctrine
+#            entity_manager: default
+#            document_manager: default
+#        result_cache:
+#            client: doctrine
+#            #entity_manager: [default]
+#            entity_manager: [default, read]
+#        query_cache:
+#            client: doctrine
+#            entity_manager: default
+#    session:
+#        client: session
+#        prefix: "sf_session"
+#        use_as_default: true
+#        ttl: 1200
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+
+sonata_admin:
+    title:  测试用后台
+    #title_logo: ~
+
+    dashboard:
+        groups:
+            admin_group:
+                label: 管理组列表
+            admin_post:
+                label: 文章列表
+
+    templates:
+        user_block: JimsPeteBundle:Admin:user_block.html.twig

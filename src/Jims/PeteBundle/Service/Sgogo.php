@@ -19,4 +19,7 @@ class Sgogo
     {
         echo 'no!';
     }
+    public function giveValue(){
+        return 'jims pete';
+    }
 }

@@ -1,0 +1,15 @@
+services:
+#    jims_uiop.example:
+#        class: Jims\UiopBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+
+    form.type.ueditor:
+        class: Jims\UiopBundle\Form\Type\UeditorType
+        tags:
+            - { name: form.type , alias: ueditor }
+
+    form.type.sb:
+        class: Jims\UiopBundle\Form\Type\SbType
+        tags:
+            - { name: form.type , alias: app_sb }

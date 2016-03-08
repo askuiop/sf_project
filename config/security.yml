@@ -1,0 +1,51 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        Jims\PeteBundle\Entity\Guest:
+            algorithm: bcrypt
+        Jims\PeteBundle\Entity\User:
+            algorithm: bcrypt
+            #algorithm: plaintext
+            #ignore_case: false
+        Jims\PeteBundle\Security\WebserviceUser: bcrypt
+
+    # ...
+
+    providers:
+        webservice:
+            id: webservice_user_provider
+        db_gueset_provider_1:
+            entity:
+                class: JimsPeteBundle:Guest
+        db_gueset_provider_2:
+            entity:
+                class: JimsPeteBundle:Guest
+                property: account
+                # if you're using multiple entity managers
+                # manager_name: customer
+        db_user_provider:
+            entity:
+                class: JimsPeteBundle:User
+                property: username
+
+    firewalls:
+        secured_area:
+            pattern: ^/
+            anonymous: true
+            form_login:
+                check_path: security_login_check
+                login_path: security_login_form
+                default_target_path: /admin
+            logout:
+                path: security_logout
+                target: security_login_form
+            provider: webservice
+        #public_area:
+         #   pattern: ^/
+         #   anonymous: true
+
+    access_control:
+            # require ROLE_ADMIN for /admin*
+            - { path: ^/admin, roles: ROLE_ADMIN }
+            #- { path: ^/admin/users, roles: ROLE_SUPER_ADMIN }

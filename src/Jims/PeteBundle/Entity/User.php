@@ -106,6 +106,8 @@ class User implements UserInterface, \Serializable
     public function __construct(){
         $this->ugroups = new \Doctrine\Common\Collections\ArrayCollection();
         //$this->profile = new \Doctrine\Common\Collections\ArrayCollection();
+
+        $this->category = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -285,7 +287,7 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return array('ROLE_ADMIN');
+        return array('ROLE_ADMIN', 'ROLE_SONATA_ADMIN');
     }
 
     public function getSalt()

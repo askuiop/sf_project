@@ -11,8 +11,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * Class User
  * @package JimsPeteBundle\Entity
  * @ORM\Entity(repositoryClass="UserRepository")
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="user")
  * @ORM\Table(options={"collate"="utf8mb4_unicode_ci", "charset"="utf8mb4"})
+ *
  */
 class User implements UserInterface, \Serializable
 {
@@ -283,7 +285,7 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return array('ROLE_ADMIN');
+        return array('ROLE_ADMIN', 'ROLE_SONATA_ADMIN');
     }
 
     public function getSalt()
@@ -387,6 +389,14 @@ class User implements UserInterface, \Serializable
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
+        // check if we have an old image path
+        if (isset($this->path)) {
+            // store the old name to delete after the update
+            $this->temp = $this->path;
+            $this->path = null;
+        } else {
+            $this->path = 'initial';
+        }
     }
 
     /**
@@ -469,5 +479,86 @@ class User implements UserInterface, \Serializable
     public function getAccounting()
     {
         return $this->accounting;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        dump(1);
+        if (null !== $this->getFile()) {
+            // do whatever you want to generate a unique name
+            $filename = sha1(uniqid(mt_rand(), true));
+            $this->path = $filename.'.'.$this->getFile()->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        dump(2);
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        //当移动文件发生错误，一个异常move（）会自动抛出异常。
+        //这将阻止实体持久化数据库发生错误。
+        $this->getFile()->move($this->getUploadRootDir(), $this->path);
+
+        // check if we have an old image
+        if (isset($this->temp)) {
+            // delete the old image
+            unlink($this->getUploadRootDir().'/'.$this->temp);
+            // clear the temp image path
+            $this->temp = null;
+        }
+        $this->file = null;
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        $file = $this->getAbsolutePath();
+        if ($file) {
+            unlink($file);
+        }
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir().'/'.$this->path;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadDir().'/'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/user';
     }
 }

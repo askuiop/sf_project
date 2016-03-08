@@ -36,7 +36,10 @@ security:
             form_login:
                 check_path: security_login_check
                 login_path: security_login_form
-                default_target_path: /admin
+
+                # if true, forward the user to the login form instead of redirecting
+                use_forward: false
+                default_target_path: /admin/dashboard
             logout:
                 path: security_logout
                 target: security_login_form

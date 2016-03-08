@@ -1,0 +1,3 @@
+jims_uiop_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: JimsUiopBundle:Default:index }

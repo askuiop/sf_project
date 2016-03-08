@@ -23,7 +23,7 @@ use Predis\Client;
 class SecurityController extends BaseController
 {
     /**
-     * @Route("/admin")
+     * @Route("/notadmin")
      */
     public function adminAciton()
     {

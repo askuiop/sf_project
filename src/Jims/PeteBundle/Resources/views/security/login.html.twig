@@ -23,7 +23,7 @@
                             <input type="password" id="password" name="_password" class="form-control" />
                         </div>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-                        <input type="hidden" name="_target_path" value="/" />
+                        <input type="hidden" name="_target_path" value="/admin" />
                         <button type="submit" class="btn btn-primary">
                             <i class="fa fa-sign-in"></i> {{ 'action.sign_in'|trans }}
                         </button>

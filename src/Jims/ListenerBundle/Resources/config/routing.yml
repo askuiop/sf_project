@@ -1,0 +1,3 @@
+jims_listener_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: JimsListenerBundle:Default:index }

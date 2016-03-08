@@ -2,6 +2,11 @@
 # http://symfony.com/doc/current/book/service_container.html
 parameters:
 #    parameter_name: value
+    test_param: @@http://symfony.com/?foo=%%s&bar=%%d@@securepass
+    array_param:
+        - ary1
+        - ary2
+
 
 services:
 #    service_name:
@@ -10,9 +15,13 @@ services:
     jims_pete.sgogo:
         class: Jims\PeteBundle\Service\Sgogo
         arguments: ~
+
     jims_pete.spp:
-        class: Jims\PeteBundle\Service\Sgogo
-        arguments: ["@jims_pete.sgogo"]
+        class: Jims\PeteBundle\Service\Spp
+        arguments: ["@?jims_pete.sgogo", "@request_stack", '%test_param%', '%array_param%', "@=service('jims_pete.sgogo').giveValue()"]
+        calls:
+            - [setAry, ['%array_param%']]
+
     webservice_user_provider:
         class: Jims\PeteBundle\Security\WebserviceUserProvider
         arguments: ["@doctrine.orm.entity_manager"]

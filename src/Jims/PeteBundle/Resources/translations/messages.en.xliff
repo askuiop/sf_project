@@ -10,6 +10,22 @@
                 <source>title.homepage</source>
                 <target><![CDATA[Welcome to the <strong>Symfony</strong> application]]></target>
             </trans-unit>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>login from here!</target>
+            </trans-unit>
+            <trans-unit id="label.username">
+                <source>label.username</source>
+                <target>user</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>password</target>
+            </trans-unit>
+            <trans-unit id="action.sign_in">
+                <source>action.sign_in</source>
+                <target>Login</target>
+            </trans-unit>
 
         </body>
     </file>

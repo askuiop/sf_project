@@ -34,6 +34,9 @@ class Guest implements UserInterface, \Serializable
     private $account;
 
 
+    private $username;
+
+
     /**
      * @ORM\Column(type="string", length=64)
      */
@@ -204,4 +207,28 @@ class Guest implements UserInterface, \Serializable
     }
 
 
+
+    /**
+     * Set nickName
+     *
+     * @param string $nickName
+     *
+     * @return Guest
+     */
+    public function setNickName($nickName)
+    {
+        $this->nickName = $nickName;
+
+        return $this;
+    }
+
+    /**
+     * Get nickName
+     *
+     * @return string
+     */
+    public function getNickName()
+    {
+        return $this->nickName;
+    }
 }

@@ -19,7 +19,9 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "predis/predis": "1.0.3",
-        "snc/redis-bundle": "^1.1"
+        "snc/redis-bundle": "^1.1",
+        "sonata-project/admin-bundle": "^2.3",
+        "sonata-project/doctrine-orm-admin-bundle": "^2.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -52,9 +54,5 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         }
-    },
-    "repositories": [
-        {"type": "composer", "url": "http://packagist.phpcomposer.com"},
-        {"packagist": false}
-    ]
+    }
 }

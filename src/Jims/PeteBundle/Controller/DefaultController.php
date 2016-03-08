@@ -2,6 +2,7 @@
 
 namespace Jims\PeteBundle\Controller;
 
+use Jims\PeteBundle\Entity\Category;
 use Jims\PeteBundle\Form\UserType;
 use Jims\PeteBundle\Entity\Ugroup;
 use Jims\PeteBundle\Entity\User;
@@ -92,6 +93,13 @@ class DefaultController extends BaseController
         */
 
         $user = new User();
+
+        $cate1 = new Category();
+        $cate1->name = 'cat1';
+        $user->getCategory()->add($cate1);
+        $cate2 = new Category();
+        $cate2->name = 'cat2';
+        $user->getCategory()->add($cate2);
 
         $form = $this->createForm(new UserType(), $user);
 

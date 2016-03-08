@@ -1,0 +1,28 @@
+services:
+    jims_pete.admin.group:
+        class: Jims\PeteBundle\Admin\UgroupAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin_group, label: "用户组" }
+        arguments:
+            - ~
+            - Jims\PeteBundle\Entity\Ugroup
+            - ~
+        calls:
+            - [ setTranslationDomain, [Jims\PeteBundle]]
+
+    jims_pete.admin.user:
+            class: Jims\PeteBundle\Admin\UserAdmin
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: admin_group, label: "用户列表" }
+            arguments:
+                - ~
+                - Jims\PeteBundle\Entity\User
+                - JimsPeteBundle:UserAdmin
+            calls:
+                - [ setTranslationDomain, [Jims\PeteBundle]]
+
+    jims_pete.admin.post:
+        class: Jims\PeteBundle\Admin\PostAdmin
+        arguments: [~, Jims\PeteBundle\Entity\Post, JimsPeteBundle:PostAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin_post, label: Post}

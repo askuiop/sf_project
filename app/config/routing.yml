@@ -1,12 +1,35 @@
+jims_uiop:
+    resource: "@JimsUiopBundle/Resources/config/routing.yml"
+    prefix:   /
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+#jims_listener:
+#    resource: "@JimsListenerBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#jimslistener:
+#    resource: "@jimslistenerBundle/Resources/config/routing.yml"
+#    prefix:   /
+
 jims_pete:
     resource: "@JimsPeteBundle/Controller/"
     type:     annotation
-    prefix:   /{_locale}
-    requirements:
-        _locale: %app_locales%
+    #prefix:   /{_locale}
+    #requirements:
+    #    _locale: %app_locales%
     defaults:
         _locale: %locale%
 
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+

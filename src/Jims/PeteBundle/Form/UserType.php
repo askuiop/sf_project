@@ -17,14 +17,19 @@ class UserType extends AbstractType
     {
         $builder
             ->add('account')
-            ->add('username', null)
+            ->add('username', 'ueditor')
             ->add('password', 'password')
             ->add('dueDate', 'datetime', array('mapped' => false))
+            /*
             ->add('category', 'entity', array(
                 'class' => 'JimsPeteBundle:Category',
                 'choice_label' => 'name',
                 'expanded'=> true,
                 'multiple'=> false,
+            ))*/
+            ->add("category", 'collection', array(
+                'type' => new CategoryType(),
+                'allow_add'    => true,
             ))
 
             ->add('ugroups', 'entity', array(

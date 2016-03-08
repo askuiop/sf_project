@@ -1,12 +1,23 @@
 {% extends 'JimsPeteBundle:pete:layout.html.twig' %}
 
 {% block container %}
+    {#{{ dump(form) }}#}
     {% if msg %}
         <P>消息：{{ msg }}</P>
     {% endif %}
     <h4>添加用户</h4>
     {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-    {{ form_widget(form) }}
+    {#{{ form_widget(form) }}#}
+
+    <h3>category</h3>
+    <ul class="tags" data-prototype="{{ form_widget(form.category.vars.prototype)|e }}">
+        {# iterate over each existing tag and render its only field: name #}
+        {% for cat in form.category %}
+            <li>{{ form_row(cat.name) }}</li>
+        {% endfor %}
+        {{ form_widget(form.category.vars.prototype.name)|e }}
+
+    </ul>
 
 
 

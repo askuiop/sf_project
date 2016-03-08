@@ -1,0 +1,8 @@
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<div style="text-align: center;">
+    <p>Username: {{ app.user.username }}</p>
+</div>
+{% endif %}
+<div style="text-align: center;">
+    <a href="{{ path('security_logout') }}" >退出</a>
+</div>

@@ -1,0 +1,22 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field%}
+    <div>
+        {#{{ dump(object) }}#}
+        {#{{ dump(field_description.options) }}#}
+
+        {#{{ dump(admin.data.jims) }}
+        {{ attribute( admin.data, 'jims') }}#}
+
+
+
+        {% set image = '/' ~ 'uploads/user/' ~ object.path  %}
+        {% if object.pic_exists == true %}
+            <img src="{{ image  }}" width="80" height="80" />
+        {% else %}
+            <img src="/uploads/default/no_image.gif" width="80" height="80" />
+        {% endif %}
+
+        {# or whatever to create src of image #}
+    </div>
+{% endblock %}

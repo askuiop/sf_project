@@ -1,0 +1,4 @@
+services:
+#    jims_listener.example:
+#        class: Jims\ListenerBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
