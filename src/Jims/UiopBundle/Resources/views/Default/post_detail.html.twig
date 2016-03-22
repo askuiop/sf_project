@@ -1,0 +1,59 @@
+{% extends "JimsUiopBundle:Default:layout.html.twig" %}
+
+
+
+{% block header %}
+    <h1>Jims Blog - 文章详情</h1>
+    <p><a href="{{ url('JimsUiop_homepage') }}">返回首页</a></p>
+
+    {{ dump(app.request.attributes) }}
+    {#{{ app.request.attributes.get('_controller') }}#}
+{% endblock %}
+
+{% block container %}
+    {% if post %}
+    <div>
+        <h2>{{ post.title }}</h2>
+
+        <div><pre>{{ post.content | raw }}</pre></div>
+        <p>标签：</p>
+        {% if post.tags %}
+            {% for tag in post.tags %}
+                <span>{{ tag.name }}</span>&nbsp;
+            {% endfor %}
+        {% else %}
+            <span>无标签</span>
+        {% endif %}
+
+    </div>
+    {% endif %}
+
+    <div>现在时间是：{{ 'now' | date("Y-m-d") }}</div>
+    
+    
+    <div>
+        {% if gbList %}
+            <ul>
+            {% for gb in gbList %}
+                <li>
+                    <p>{{ gb.title }}</p>
+                    <p>{{ gb.content }}</p>
+                </li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <div>
+        <h3>留言板</h3>
+    {{ form_start(form) }}
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form)}}
+
+        <button type="submit">提交留言</button>
+    {{ form_end(form) }}
+    </div>
+    
+
+{% endblock %}

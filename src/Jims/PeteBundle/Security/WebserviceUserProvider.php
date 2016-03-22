@@ -31,8 +31,9 @@ class WebserviceUserProvider implements UserProviderInterface
             $password = $userData->getPassword();
             $roles = $userData->getRoles();
             $salt = $userData->getSalt();
+            $id = $userData->getId();
 
-            return new WebserviceUser($username, $password, $salt, $roles);
+            return new WebserviceUser($username, $password, $salt, $roles , $id);
         }
 
         throw new UsernameNotFoundException(

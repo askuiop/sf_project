@@ -155,7 +155,7 @@ class DefaultController extends BaseController
         /**
          * @var $user \Jims\PeteBundle\Entity\User
          */
-        $tel = $user->getUseName();
+        $tel = $user->getUsername();
 
         return array('name' => '   fuck you ' ,"c"=>$tel);
     }

@@ -3,7 +3,6 @@
 namespace Jims\PeteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Tags
@@ -37,6 +36,7 @@ class Tags
     private $name;
 
     /**
+     * @var \Jims\PeteBundle\Entity\Post
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="tags")
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      */
@@ -100,5 +100,28 @@ class Tags
     {
         return $this->name;
     }
-}
 
+    /**
+     * Set post
+     *
+     * @param \Jims\PeteBundle\Entity\Post $post
+     *
+     * @return Tags
+     */
+    public function setPost(\Jims\PeteBundle\Entity\Post $post = null)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \Jims\PeteBundle\Entity\Post
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+}

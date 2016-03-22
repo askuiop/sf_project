@@ -30,9 +30,25 @@ security:
                 property: username
 
     firewalls:
+        blog_area:
+            pattern: ^/blog
+            anonymous: true
+            provider: webservice
+            context: blog
+            form_login:
+                check_path: JimsUiop_login_check
+                login_path: JimsUiop_login
+
+                # if true, forward the user to the login form instead of redirecting
+                use_forward: false
+                default_target_path: JimsUiop_homepage
+            logout:
+                path: JimsUiop_logout
+                target: JimsUiop_homepage
         secured_area:
             pattern: ^/
             anonymous: true
+            context: xxx
             form_login:
                 check_path: security_login_check
                 login_path: security_login_form
@@ -47,6 +63,8 @@ security:
         #public_area:
          #   pattern: ^/
          #   anonymous: true
+
+
 
     access_control:
             # require ROLE_ADMIN for /admin*

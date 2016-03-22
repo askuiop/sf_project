@@ -16,13 +16,17 @@ class WebserviceUser implements UserInterface, EquatableInterface
     private $password;
     private $salt;
     private $roles;
+    private $id;
 
-    public function __construct($username, $password, $salt, array $roles)
+
+
+    public function __construct($username, $password, $salt, array $roles, $id)
     {
         $this->username = $username;
         $this->password = $password;
         $this->salt = $salt;
         $this->roles = $roles;
+        $this->id = $id;
     }
 
     public function getRoles()
@@ -49,8 +53,20 @@ class WebserviceUser implements UserInterface, EquatableInterface
     {
     }
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
     public function isEqualTo(UserInterface $user)
     {
+        dump($user);
+        dump($this);
+        //exit;
         if (!$user instanceof WebserviceUser) {
             return false;
         }

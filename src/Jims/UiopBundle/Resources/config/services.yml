@@ -13,3 +13,6 @@ services:
         class: Jims\UiopBundle\Form\Type\SbType
         tags:
             - { name: form.type , alias: app_sb }
+    quote:
+        class: Jims\UiopBundle\Service\Quote
+        arguments: ['@logger']

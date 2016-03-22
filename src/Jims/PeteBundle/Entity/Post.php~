@@ -3,6 +3,7 @@
 namespace Jims\PeteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Post
@@ -36,7 +37,7 @@ class Post
     private $categoryId;
 
     /**
-     * @var
+     * @var \Doctrine\Common\Collections\ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Tags", mappedBy="post")
      */
@@ -62,6 +63,7 @@ class Post
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
+
 
 
     /**
@@ -122,29 +124,7 @@ class Post
         return $this->categoryId;
     }
 
-    /**
-     * Set tags
-     *
-     * @param string $tags
-     *
-     * @return Post
-     */
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
 
-        return $this;
-    }
-
-    /**
-     * Get tags
-     *
-     * @return string
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
 
     /**
      * Set content
@@ -216,5 +196,36 @@ class Post
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add tag
+     *
+     * @param \Jims\PeteBundle\Entity\Tags $tag
+     *
+     * @return Post
+     */
+    public function addTag(\Jims\PeteBundle\Entity\Tags $tag)
+    {
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param \Jims\PeteBundle\Entity\Tags $tag
+     */
+    public function removeTag(\Jims\PeteBundle\Entity\Tags $tag)
+    {
+        $this->tags->removeElement($tag);
     }
 }

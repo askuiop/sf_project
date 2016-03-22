@@ -24,66 +24,10 @@ class Category
     public $name;
 
     /**
-     * @ORM\Column(type="boolean", options={"default"=0} )
+     * @ORM\Column(type="boolean", options={"default"=false} )
      * @Assert\NotBlank()
      */
     public $isAvailable;
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Category
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set isAvailable
-     *
-     * @param \bolean $isAvailable
-     *
-     * @return Category
-     */
-    public function setIsAvailable(\bolean $isAvailable)
-    {
-        $this->isAvailable = $isAvailable;
-
-        return $this;
-    }
-
-    /**
-     * Get isAvailable
-     *
-     * @return \bolean
-     */
-    public function getIsAvailable()
-    {
-        return $this->isAvailable;
-    }
 }

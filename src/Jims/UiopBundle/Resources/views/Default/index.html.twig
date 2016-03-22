@@ -1,1 +1,23 @@
-Hello {{ name }}!
+{% extends "Jims\UiopBundle:Default:layout.html.twig" %}
+
+{% block header %}
+    <h1>Jims Blog</h1>
+{% endblock %}
+
+{% block container %}
+<div>
+    <h2>文章列表</h2>
+    {% if rlt %}
+        <ul>
+        {% for key, item in rlt %}
+            <li><a href="{{ path('JimsUiop_post_detail', {'id':item.id} ) }}" >{{ key+1 }}.{{ item.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>暂无文章</p>
+    {% endif %}
+</div>
+<div>
+    <a href="{{ path('JimsUiop_login') }}">登陆</a>
+</div>
+{% endblock %}

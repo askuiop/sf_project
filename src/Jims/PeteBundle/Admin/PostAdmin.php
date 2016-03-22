@@ -34,8 +34,10 @@ class PostAdmin extends Admin
             ->add('id')
             ->add('title')
             ->add('categoryId')
-            ->add('content')
-            ->add('createdAt')
+            //->add('content')
+            ->add('createdAt', '' , array(
+                'label'=>'创建时间'
+            ))
             ->add('updatedAt')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -73,7 +75,9 @@ class PostAdmin extends Admin
             ->add('id')
             ->add('title')
             ->add('categoryId')
-            ->add('content')
+            ->add('content', '', array(
+                'template'=>'JimsPeteBundle:Admin:post_content.html.twig'
+            ))
             ->add('createdAt')
             ->add('updatedAt')
         ;

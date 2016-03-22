@@ -16,7 +16,7 @@ class Post
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer" )
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -124,29 +124,7 @@ class Post
         return $this->categoryId;
     }
 
-    /**
-     * Set tags
-     *
-     * @param string $tags
-     *
-     * @return Post
-     */
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
 
-        return $this;
-    }
-
-    /**
-     * Get tags
-     *
-     * @return string
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
 
     /**
      * Set content
@@ -249,5 +227,15 @@ class Post
     public function removeTag(\Jims\PeteBundle\Entity\Tags $tag)
     {
         $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

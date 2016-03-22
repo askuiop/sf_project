@@ -24,10 +24,12 @@ class Category
     public $name;
 
     /**
-     * @ORM\Column(type="boolean", options={"default"=0} )
+     * @ORM\Column(type="boolean", options={"default"=false} )
      * @Assert\NotBlank()
      */
     public $isAvailable;
+
+
 
     /**
      * Get id
@@ -66,11 +68,11 @@ class Category
     /**
      * Set isAvailable
      *
-     * @param \bolean $isAvailable
+     * @param boolean $isAvailable
      *
      * @return Category
      */
-    public function setIsAvailable(\bolean $isAvailable)
+    public function setIsAvailable($isAvailable)
     {
         $this->isAvailable = $isAvailable;
 
@@ -80,7 +82,7 @@ class Category
     /**
      * Get isAvailable
      *
-     * @return \bolean
+     * @return boolean
      */
     public function getIsAvailable()
     {

@@ -1,3 +1,16 @@
-jims_uiop_homepage:
-    path:     /hello/{name}
+JimsUiop_homepage:
+    path:     /blog
     defaults: { _controller: JimsUiopBundle:Default:index }
+JimsUiop_post_detail:
+    path:   /blog/post/{id}
+    defaults: { _controller: JimsUiopBundle:Default:postDetail }
+JimsUiop_login:
+    path:   /blog/login
+    defaults: { _controller: JimsUiopBundle:Security:login }
+
+JimsUiop_login_check:
+    path:   /blog/login_check
+    defaults: { _controller: JimsUiopBundle:Security:logincheck }
+JimsUiop_logout:
+    path:   /blog/logout
+    defaults: { _controller: JimsUiopBundle:Security:logout }
