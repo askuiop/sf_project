@@ -43,6 +43,12 @@ class Post
      */
     private $tags;
 
+  /**
+   * @var \Doctrine\Common\Collections\ArrayCollection
+   * @ORM\ManyToMany(targetEntity="Jims\PeteBundle\Entity\PostCategory", mappedBy="posts")
+   */
+    private $categories;
+
     /**
      * @var string
      *
@@ -237,5 +243,39 @@ class Post
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \Jims\PeteBundle\Entity\PostCategory $category
+     *
+     * @return Post
+     */
+    public function addCategory(\Jims\PeteBundle\Entity\PostCategory $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \Jims\PeteBundle\Entity\PostCategory $category
+     */
+    public function removeCategory(\Jims\PeteBundle\Entity\PostCategory $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

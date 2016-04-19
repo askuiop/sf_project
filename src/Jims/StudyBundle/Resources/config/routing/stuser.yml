@@ -1,0 +1,30 @@
+stuser:
+    path:     /
+    defaults: { _controller: "JimsStudyBundle:StUser:index" }
+
+stuser_show:
+    path:     /{id}/show
+    defaults: { _controller: "JimsStudyBundle:StUser:show" }
+
+stuser_new:
+    path:     /new
+    defaults: { _controller: "JimsStudyBundle:StUser:new" }
+
+stuser_create:
+    path:     /create
+    defaults: { _controller: "JimsStudyBundle:StUser:create" }
+    methods:  POST
+
+stuser_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "JimsStudyBundle:StUser:edit" }
+
+stuser_update:
+    path:     /{id}/update
+    defaults: { _controller: "JimsStudyBundle:StUser:update" }
+    methods:  [POST, PUT]
+
+stuser_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "JimsStudyBundle:StUser:delete" }
+    methods:  [POST, DELETE]

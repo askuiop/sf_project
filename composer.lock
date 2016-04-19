@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "67c413bbf2ad1127ba061a96789b618f",
-    "content-hash": "4f0d380b1c81c55552d7f1f3f35b8696",
+    "hash": "974f51b00b83643e1d7b67c20da17b76",
+    "content-hash": "4afc23740750e5bc95f6546fc6cc8b4f",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -348,6 +348,63 @@
             "time": "2015-12-25 13:10:16"
         },
         {
+            "name": "doctrine/data-fixtures",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/data-fixtures.git",
+                "reference": "bd44f6b6e40247b6530bc8abe802e4e4d914976a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/doctrine/data-fixtures/bd44f6b6e40247b6530bc8abe802e4e4d914976a.zip",
+                "reference": "bd44f6b6e40247b6530bc8abe802e4e4d914976a",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "~2.2",
+                "php": ">=5.3.2"
+            },
+            "conflict": {
+                "doctrine/orm": "< 2.4"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.4"
+            },
+            "suggest": {
+                "doctrine/mongodb-odm": "For loading MongoDB ODM fixtures",
+                "doctrine/orm": "For loading ORM fixtures",
+                "doctrine/phpcr-odm": "For loading PHPCR ODM fixtures"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\Common\\DataFixtures": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                }
+            ],
+            "description": "Data Fixtures for all Doctrine Object Managers",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "database"
+            ],
+            "time": "2015-03-30 12:14:13"
+        },
+        {
             "name": "doctrine/dbal",
             "version": "v2.5.4",
             "source": {
@@ -583,6 +640,63 @@
                 "caching"
             ],
             "time": "2016-01-26 17:28:51"
+        },
+        {
+            "name": "doctrine/doctrine-fixtures-bundle",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
+                "reference": "0f1a2f91b349e10f5c343f75ab71d23aace5b029"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/doctrine/DoctrineFixturesBundle/0f1a2f91b349e10f5c343f75ab71d23aace5b029.zip",
+                "reference": "0f1a2f91b349e10f5c343f75ab71d23aace5b029",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/data-fixtures": "~1.0",
+                "doctrine/doctrine-bundle": "~1.0",
+                "php": ">=5.3.2",
+                "symfony/doctrine-bridge": "~2.3|~3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Bundle\\FixturesBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Doctrine Project",
+                    "homepage": "http://www.doctrine-project.org"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony DoctrineFixturesBundle",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "Fixture",
+                "persistence"
+            ],
+            "time": "2015-11-04 21:23:23"
         },
         {
             "name": "doctrine/inflector",

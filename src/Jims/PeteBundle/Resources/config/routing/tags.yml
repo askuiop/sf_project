@@ -1,0 +1,30 @@
+tags:
+    path:     /
+    defaults: { _controller: "JimsPeteBundle:Tags:index" }
+
+tags_show:
+    path:     /{id}/show
+    defaults: { _controller: "JimsPeteBundle:Tags:show" }
+
+tags_new:
+    path:     /new
+    defaults: { _controller: "JimsPeteBundle:Tags:new" }
+
+tags_create:
+    path:     /create
+    defaults: { _controller: "JimsPeteBundle:Tags:create" }
+    methods:  POST
+
+tags_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "JimsPeteBundle:Tags:edit" }
+
+tags_update:
+    path:     /{id}/update
+    defaults: { _controller: "JimsPeteBundle:Tags:update" }
+    methods:  [POST, PUT]
+
+tags_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "JimsPeteBundle:Tags:delete" }
+    methods:  [POST, DELETE]

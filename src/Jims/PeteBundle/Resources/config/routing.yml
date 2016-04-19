@@ -1,0 +1,8 @@
+jims_pete_postcategory:
+    resource: "@JimsPeteBundle/Resources/config/routing/postcategory.yml"
+    prefix:   /postcategory
+
+jims_pete_tags:
+    resource: "@JimsPeteBundle/Resources/config/routing/tags.yml"
+    prefix:   /tags
+

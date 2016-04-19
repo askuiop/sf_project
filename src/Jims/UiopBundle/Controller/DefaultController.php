@@ -5,6 +5,7 @@ namespace Jims\UiopBundle\Controller;
 use Jims\PeteBundle\Entity\GBook;
 use Jims\PeteBundle\Entity\Ugroup;
 use Jims\PeteBundle\Entity\User;
+use Jims\UiopBundle\EventListener\MyEventType;
 use Jims\UiopBundle\Form\GbookType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +14,9 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+
+        $this->get('jims_event_creater')->myFirstEvent();
+        //$this->get('event_dispatcher')->dispatch(MyEventType::NAME, new MyEventType());
 
         //echo  $this->get('session')->getFlashBag()->;
 
@@ -30,7 +34,7 @@ class DefaultController extends Controller
          * @var $user User
          */
         $user = $em->getRepository("JimsPeteBundle:User")->findBy(array('id'=>15));
-        dump($user[0]->getUgroups());
+        //dump($user[0]->getUgroups());
         //dump($user);
 
         /**
@@ -61,6 +65,8 @@ class DefaultController extends Controller
         //print_r($request->getSession()->get('PHPSESSID'));
         //print_r($request->cookies->get('PHPSESSID'));
 
+        //print_r($request->headers->all());
+
 
         $gb = new GBook();
         $form = $this->createForm(new GbookType(), $gb);
@@ -89,8 +95,6 @@ class DefaultController extends Controller
         }
 
 
-
-
         return $this->render('JimsUiopBundle:Default:post_detail.html.twig',
           array(
             'gbList' => $gbList,
@@ -99,8 +103,10 @@ class DefaultController extends Controller
         ));
 
 
+        echo 11111111111111111;
+        echo $this->getRequest()->attributes->get('_controller');
 
-        //echo $this->getRequest()->attributes->get('_controller');
+
 
 
     }

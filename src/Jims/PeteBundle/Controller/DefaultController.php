@@ -120,8 +120,23 @@ class DefaultController extends BaseController
             $user->setIsAvailable(1);
             $user->setcreatedAt(new \DateTime());
             $user->setUpdatedAt(new \DateTime());
-            $user->setPassword(password_hash($form->get("password")->getData(),PASSWORD_DEFAULT));
+
+            //#1
+            //$user->setPassword(password_hash($form->get("password")->getData(),PASSWORD_DEFAULT), array(
+            //    'cost' => ?
+            //));
+
+            //#2
+            $encoder = $this->get('security.password_encoder');
+            $psw = $encoder->encodePassword($user, $form->get("password")->getData());
+            $user->setPassword($psw);
+
+
+
             $user->setAvatar('');
+            $user->getCategory()->add($cate1);
+            $user->getCategory()->add($cate2);
+            $user->setPath('');
 
 
             $em = $this->getDoctrine()->getManager();

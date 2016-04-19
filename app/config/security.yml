@@ -9,8 +9,15 @@ security:
             #algorithm: plaintext
             #ignore_case: false
         Jims\PeteBundle\Security\WebserviceUser: bcrypt
+        Jims\StudyBundle\Entity\StUser: bcrypt
 
     # ...
+
+    role_hierarchy:
+        ROLE_USER: [ ROLE_USELESS, ROLE_NOTHING ]
+        ROLE_ADMIN: [ ROLE_USER ]
+
+
 
     providers:
         webservice:
@@ -28,8 +35,29 @@ security:
             entity:
                 class: JimsPeteBundle:User
                 property: username
+        st_user_provider:
+            entity:
+                class: JimsStudyBundle:StUser
+
 
     firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        study:
+            pattern: ^/study
+            #ecurity: true
+            anonymous: true
+            context: study
+            provider: st_user_provider
+            form_login:
+                check_path: study_login_check
+                login_path: study_login_path
+                default_target_path: study_login_path
+            logout:
+                path: study_login_out
+                target: study_login_path
+
         blog_area:
             pattern: ^/blog
             anonymous: true
@@ -70,3 +98,7 @@ security:
             # require ROLE_ADMIN for /admin*
             - { path: ^/admin, roles: ROLE_ADMIN }
             #- { path: ^/admin/users, roles: ROLE_SUPER_ADMIN }
+
+
+            #--------study------#
+            - { path: ^/stuser, roles: ROLE_USER }

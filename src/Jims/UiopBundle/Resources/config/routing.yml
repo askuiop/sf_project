@@ -14,3 +14,8 @@ JimsUiop_login_check:
 JimsUiop_logout:
     path:   /blog/logout
     defaults: { _controller: JimsUiopBundle:Security:logout }
+
+
+Jims_preControl_postControl_test:
+    path: /token
+    defaults: { _controller: JimsUiopBundle:TestToken:index }

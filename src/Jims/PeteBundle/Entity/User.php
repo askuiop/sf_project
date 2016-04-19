@@ -78,11 +78,11 @@ class User implements UserInterface, \Serializable
     protected $UpdatedAt;
 
 
-    /**
-     * @Assert\Type(type="Jims\PeteBundle\Entity\Category")
-     * @Assert\Valid()
-     */
-    protected $category;
+    ///**
+    // * @Assert\Type(type="Jims\PeteBundle\Entity\Category")
+    // * @Assert\Valid()
+    // */
+    //protected $category;
 
     /**
      * @Assert\File(maxSize="6000000")

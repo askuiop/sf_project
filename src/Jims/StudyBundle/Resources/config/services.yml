@@ -1,0 +1,4 @@
+services:
+#    jims_study.example:
+#        class: Jims\StudyBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

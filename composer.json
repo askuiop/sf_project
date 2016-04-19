@@ -21,7 +21,8 @@
         "predis/predis": "1.0.3",
         "snc/redis-bundle": "^1.1",
         "sonata-project/admin-bundle": "^2.3",
-        "sonata-project/doctrine-orm-admin-bundle": "^2.3"
+        "sonata-project/doctrine-orm-admin-bundle": "^2.3",
+        "doctrine/doctrine-fixtures-bundle": "~2.3.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -53,6 +54,12 @@
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
+        }
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
         }
     }
 }

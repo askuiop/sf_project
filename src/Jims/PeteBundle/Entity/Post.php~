@@ -16,7 +16,7 @@ class Post
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer" )
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -42,6 +42,12 @@ class Post
      * @ORM\OneToMany(targetEntity="Tags", mappedBy="post")
      */
     private $tags;
+
+  /**
+   * @var \Doctrine\Common\Collections\ArrayCollection
+   * @ORM\ManyToMany(targetEntity="Jims\PeteBundle\Entity\PostCategory", mappedBy="posts")
+   */
+    private $categories;
 
     /**
      * @var string
@@ -227,5 +233,15 @@ class Post
     public function removeTag(\Jims\PeteBundle\Entity\Tags $tag)
     {
         $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

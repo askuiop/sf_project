@@ -1,3 +1,7 @@
+jims_study:
+    resource: "@JimsStudyBundle/Resources/config/routing.yml"
+    prefix:   /
+
 jims_uiop:
     resource: "@JimsUiopBundle/Resources/config/routing.yml"
     prefix:   /
@@ -27,6 +31,10 @@ jims_pete:
     #    _locale: %app_locales%
     defaults:
         _locale: %locale%
+
+jims_pete2:
+    resource: "@JimsPeteBundle/Resources/config/routing.yml"
+    prefix:   /
 
 app:
     resource: "@AppBundle/Controller/"

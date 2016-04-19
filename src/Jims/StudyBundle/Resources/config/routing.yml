@@ -1,0 +1,23 @@
+jims_study_stuser:
+    resource: "@JimsStudyBundle/Resources/config/routing/stuser.yml"
+    prefix:   /stuser
+
+jims_study_homepage:
+    path:     /study
+    defaults: { _controller: JimsStudyBundle:Default:index }
+
+study_login_path:
+    path:     /study/login
+    defaults: { _controller: JimsStudyBundle:Security:login }
+
+study_login_check:
+    path:     /study/login_check
+    defaults: { _controller: JimsStudyBundle:Security:logincheck }
+
+study_register_path:
+    path:     /study/register
+    defaults: { _controller: JimsStudyBundle:Security:login }
+
+study_login_out:
+    path:     /study/logout
+    defaults: { _controller: JimsStudyBundle:Security:logout }

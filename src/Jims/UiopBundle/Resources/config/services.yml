@@ -1,3 +1,6 @@
+parameters:
+#    parameter_name: value
+    my_token: 12345
 services:
 #    jims_uiop.example:
 #        class: Jims\UiopBundle\Example
@@ -16,3 +19,30 @@ services:
     quote:
         class: Jims\UiopBundle\Service\Quote
         arguments: ['@logger']
+
+    user_agent_subscriber:
+        class: Jims\UiopBundle\EventListener\UserAgentSubcriber
+        arguments: ['@request_stack']
+        tags:
+            - { name: kernel.event_subscriber }
+
+    user_agent_listener:
+        class: Jims\UiopBundle\EventListener\UserAgentListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: sayUserAgent}
+    user_agent_listener2:
+        class: Jims\UiopBundle\EventListener\UserAgentListener
+        tags:
+            - { name: kernel.event_listener, event: jims.doing, method: saySelfDesign }
+
+    jims_event_creater:
+        class: Jims\UiopBundle\EventListener\MyEventCreater
+        arguments: ['@event_dispatcher']
+
+
+    pre_post_listener:
+        class: Jims\UiopBundle\EventListener\PrePostListener
+        arguments: ['%my_token%']
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: preController }
+            - { name: kernel.event_listener, event: kernel.response, method: postController }

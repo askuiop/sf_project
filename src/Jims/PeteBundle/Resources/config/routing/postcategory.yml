@@ -1,0 +1,30 @@
+postcategory:
+    path:     /
+    defaults: { _controller: "JimsPeteBundle:PostCategory:index" }
+
+postcategory_show:
+    path:     /{id}/show
+    defaults: { _controller: "JimsPeteBundle:PostCategory:show" }
+
+postcategory_new:
+    path:     /new
+    defaults: { _controller: "JimsPeteBundle:PostCategory:new" }
+
+postcategory_create:
+    path:     /create
+    defaults: { _controller: "JimsPeteBundle:PostCategory:create" }
+    methods:  POST
+
+postcategory_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "JimsPeteBundle:PostCategory:edit" }
+
+postcategory_update:
+    path:     /{id}/update
+    defaults: { _controller: "JimsPeteBundle:PostCategory:update" }
+    methods:  [POST, PUT]
+
+postcategory_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "JimsPeteBundle:PostCategory:delete" }
+    methods:  [POST, DELETE]
