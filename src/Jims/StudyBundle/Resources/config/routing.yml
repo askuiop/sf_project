@@ -1,9 +1,21 @@
+jims_study_course:
+    resource: "@JimsStudyBundle/Resources/config/routing/course.yml"
+    prefix:   /course
+
+jims_study_article:
+    resource: "@JimsStudyBundle/Resources/config/routing/article.yml"
+    prefix:   /article
+
 jims_study_stuser:
     resource: "@JimsStudyBundle/Resources/config/routing/stuser.yml"
     prefix:   /stuser
 
 jims_study_homepage:
     path:     /study
+    defaults: { _controller: JimsStudyBundle:Default:index }
+
+jims_study_api:
+    path:     /study/api
     defaults: { _controller: JimsStudyBundle:Default:index }
 
 study_login_path:
@@ -16,7 +28,7 @@ study_login_check:
 
 study_register_path:
     path:     /study/register
-    defaults: { _controller: JimsStudyBundle:Security:login }
+    defaults: { _controller: JimsStudyBundle:Security:register }
 
 study_login_out:
     path:     /study/logout

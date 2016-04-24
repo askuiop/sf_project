@@ -1,1 +1,8 @@
-Hello {{ name }}!
+{% extends 'JimsStudyBundle::layout.html.twig' %}
+
+{% block container %}
+    <h1>this is index {% if app.user %}
+            {{- app.user.username -}}
+    {% endif %}
+    </h1>
+{% endblock %}

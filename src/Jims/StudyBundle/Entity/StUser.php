@@ -8,16 +8,20 @@
 
 namespace Jims\StudyBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Jims\StudyBundle\Entity\Article;
 
 /**
  * @ORM\Entity(repositoryClass="StUserRepository")
  * @ORM\Table(name="st_user")
+ * @ORM\HasLifecycleCallbacks()
  *
  */
-class StUser implements AdvancedUserInterface
+class StUser implements AdvancedUserInterface , \Serializable
 {
   /**
    * @ORM\Id
@@ -42,26 +46,13 @@ class StUser implements AdvancedUserInterface
     $this->id = $id;
   }
 
-  /**
-   * @return mixed
-   */
-  public function getPlainPassword()
-  {
-    return $this->plainPassword;
-  }
 
-  /**
-   * @param mixed $plainPassword
-   */
-  public function setPlainPassword($plainPassword)
-  {
-    $this->plainPassword = $plainPassword;
-  }
 
   /**
    * @ORM\Column(type="string")
+   * @Assert\Length(min=6,max=20)
    */
-  private $userName;
+  private $username;
 
   /**
    * @ORM\Column(type="string")
@@ -99,29 +90,41 @@ class StUser implements AdvancedUserInterface
 
   private $plainPassword;
 
+  /**
+   * @var Article
+   * @ORM\OneToMany(targetEntity="Jims\StudyBundle\Entity\Article", mappedBy="user")
+   */
+  private $articles;
+
+
+  public function __construct()
+  {
+    $this->articles = new ArrayCollection();
+  }
+
 
     /**
-     * Set userName
+     * Set username
      *
-     * @param string $userName
+     * @param string $username
      *
      * @return StUser
      */
-    public function setUserName($userName)
+    public function setusername($username)
     {
-        $this->userName = $userName;
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get userName
+     * Get username
      *
      * @return string
      */
-    public function getUserName()
+    public function getusername()
     {
-        return $this->userName;
+        return $this->username;
     }
 
     /**
@@ -244,6 +247,24 @@ class StUser implements AdvancedUserInterface
         return $this->updatedAt;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+      return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+      $this->plainPassword = $plainPassword;
+    }
+
+  ////////////////////////////////////////////////////////////
+
     public function setRoles(array $roles)
     {
         $this->roles = $roles;
@@ -289,7 +310,82 @@ class StUser implements AdvancedUserInterface
       return true;
     }
 
+    public function serialize()
+    {
+      return serialize(array(
+        $this->id,
+        $this->username,
+        $this->password,
+      ));
+    }
+
+    public function unserialize($serialized)
+    {
+      return list(
+        $this->id,
+        $this->username,
+        $this->password,
+        ) = unserialize($serialized);
+    }
+
+  /**
+   * @ORM\PrePersist()
+   */
+    public function prepersist()
+    {
+        if (!$this->createdAt) {
+            $this->createdAt = new \DateTime();
+        }
+        if (!$this->updatedAt) {
+            $this->updatedAt = $this->createdAt;
+        }
+        if ($this->is_availdable == null) {
+          $this->is_availdable = true;
+        }
+
+    }
+
+  /**
+   * @ORM\PreUpdate()
+   */
+    public function preUpdate()
+    {
+        $this->updatedAt =  new \DateTime();
+    }
 
 
 
+    /**
+     * Add article
+     *
+     * @param \Jims\StudyBundle\Entity\Article $article
+     *
+     * @return StUser
+     */
+    public function addArticle(\Jims\StudyBundle\Entity\Article $article)
+    {
+        $this->articles[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \Jims\StudyBundle\Entity\Article $article
+     */
+    public function removeArticle(\Jims\StudyBundle\Entity\Article $article)
+    {
+        $this->articles->removeElement($article);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
 }

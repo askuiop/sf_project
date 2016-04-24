@@ -33,6 +33,21 @@
                 <th>Updatedat</th>
                 <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
             </tr>
+
+            <tr>
+                <th>Articles</th>
+                <td>
+                    {% if entity.articles.count %}
+                        <ul>
+                        {% for article in entity.articles %}
+                            <li>{{ article.title }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        no article!
+                    {% endif %}
+                </td>
+            </tr>
         </tbody>
     </table>
 

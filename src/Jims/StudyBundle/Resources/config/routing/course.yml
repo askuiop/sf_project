@@ -1,0 +1,30 @@
+course:
+    path:     /
+    defaults: { _controller: "JimsStudyBundle:Course:index" }
+
+course_show:
+    path:     /{id}/show
+    defaults: { _controller: "JimsStudyBundle:Course:show" }
+
+course_new:
+    path:     /new
+    defaults: { _controller: "JimsStudyBundle:Course:new" }
+
+course_create:
+    path:     /create
+    defaults: { _controller: "JimsStudyBundle:Course:create" }
+    methods:  POST
+
+course_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "JimsStudyBundle:Course:edit" }
+
+course_update:
+    path:     /{id}/update
+    defaults: { _controller: "JimsStudyBundle:Course:update" }
+    methods:  [POST, PUT]
+
+course_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "JimsStudyBundle:Course:delete" }
+    methods:  [POST, DELETE]

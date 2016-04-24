@@ -2,3 +2,10 @@ services:
 #    jims_study.example:
 #        class: Jims\StudyBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+
+    st_user_doctrine_listener:
+        class: Jims\StudyBundle\Doctrine\StUserListener
+        arguments: [  @security.password_encoder ]
+        tags:
+            - { name: doctrine.event_listener , event: prePersist    }

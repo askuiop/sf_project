@@ -17,7 +17,7 @@ class StUserRepository extends \Doctrine\ORM\EntityRepository implements UserPro
   public function findOneByUsernameOrEmail($username)
   {
     return $this->createQueryBuilder('u')
-      ->andWhere('u.userName = :username OR u.email = :email')
+      ->andWhere('u.username = :username OR u.email = :email')
       ->setParameter('username', $username)
       ->setParameter('email', $username)
       ->getQuery()

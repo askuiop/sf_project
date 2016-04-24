@@ -3,6 +3,15 @@
 {% block body %}
 
     {% block header %}
+        <h4>
+            {% if app.session.flashBag.has('msg')  %}
+                <div>
+                    {% for msg in app.session.flashBag.get('msg') %}
+                        {{ msg }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </h4>
     {% endblock %}
 
     {% block container %}

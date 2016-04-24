@@ -15,12 +15,20 @@ class StUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('userName')
-            ->add('email')
-            ->add('password')
-            ->add('is_availdable')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('username')
+            ->add('email', 'email')
+            ->add('plainPassword', 'repeated' , array(
+                //'error_bubbling' => true,
+                'invalid_message' => 'The password fields must match.',
+                'options' => array('attr' => array('class' => 'password-field')),
+                'required' => true,
+                'type' => 'password',
+                'first_options' => array('label' => 'password','error_bubbling' => false),
+                'second_options' => array('label' => 'repeated password','error_bubbling' => false),
+
+
+            ))
+            ->add('sbmit', 'submit')
         ;
     }
     

@@ -14,7 +14,7 @@ security:
     # ...
 
     role_hierarchy:
-        ROLE_USER: [ ROLE_USELESS, ROLE_NOTHING ]
+        ROLE_USER: [ ROLE_USELESS, ROLE_NOTHING, ROLE_ALLOWED_TO_SWITCH ]
         ROLE_ADMIN: [ ROLE_USER ]
 
 
@@ -45,11 +45,14 @@ security:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
         study:
-            pattern: ^/study
+            pattern: ^/(study|article)
             #ecurity: true
             anonymous: true
             context: study
             provider: st_user_provider
+            remember_me:
+                key: "jimsStudy"
+            switch_user: ~
             form_login:
                 check_path: study_login_check
                 login_path: study_login_path
@@ -101,4 +104,4 @@ security:
 
 
             #--------study------#
-            - { path: ^/stuser, roles: ROLE_USER }
+            #- { path: ^/stuser, roles: ROLE_USER }
