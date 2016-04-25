@@ -9,3 +9,9 @@ services:
         arguments: [  @security.password_encoder ]
         tags:
             - { name: doctrine.event_listener , event: prePersist    }
+
+    st_twig_extension:
+        class: Jims\StudyBundle\Twig\StExtension
+        arguments: []
+        tags:
+            - { name: twig.extension }

@@ -15,8 +15,11 @@ jims_study_homepage:
     defaults: { _controller: JimsStudyBundle:Default:index }
 
 jims_study_api:
-    path:     /study/api
-    defaults: { _controller: JimsStudyBundle:Default:index }
+    path:     /study/api.{format}
+    defaults: { _controller: JimsStudyBundle:Default:index, format: html }
+    requirements:
+        format: json|xml
+
 
 study_login_path:
     path:     /study/login
