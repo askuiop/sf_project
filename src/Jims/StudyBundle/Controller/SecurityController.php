@@ -26,8 +26,22 @@ class SecurityController extends Controller
         ));
     }
 
-    public function registerAction(Request $request)
+    public function registerAction(Request $request, $ss )
     {
+        dump($this->container->getParameter('jims_study.title'));
+        /*
+        $this->container->
+        dump($this->container->getParameter('twig.form.resources'));
+
+        $resources = [];
+        if ($container->hasParameter('twig.form.resources')) {
+            $resources = $container->getParameter('twig.form.resources');
+        }
+
+        $resources[] = 'xxx_resource.twig';
+
+        $container->setParameter('twig.form.resources', $resources);*/
+
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(new StUserType(), null , array(
             'action' => ''

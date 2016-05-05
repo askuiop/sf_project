@@ -1,0 +1,23 @@
+parameters:
+    debug_info: debug_info——yoho;root_dir:%root_dir%
+
+services:
+    logger:
+        class: Monolog\Logger
+        arguments:
+            - main
+            - [ @logger.stream_handler ]
+        calls:
+            - ['pushHandler', ['@logger.std_out_handler']]
+            - [ debug, [ %debug_info% ] ]
+
+
+    logger.stream_handler:
+        class: Monolog\Handler\StreamHandler
+        arguments:
+            - %root_dir%/dino.log
+
+    logger.std_out_handler:
+        class: Monolog\Handler\StreamHandler
+        arguments:
+            - php://stdout

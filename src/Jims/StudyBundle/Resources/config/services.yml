@@ -15,3 +15,9 @@ services:
         arguments: []
         tags:
             - { name: twig.extension }
+
+    api_problem_subcriber:
+        class: Jims\StudyBundle\EventListener\ApiExceptionSubcriber
+        arguments: [%kernel.debug%]
+        tags:
+          - { name: kernel.event_subscriber }

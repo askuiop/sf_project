@@ -22,7 +22,10 @@
         "snc/redis-bundle": "^1.1",
         "sonata-project/admin-bundle": "^2.3",
         "sonata-project/doctrine-orm-admin-bundle": "^2.3",
-        "doctrine/doctrine-fixtures-bundle": "~2.3.0"
+        "doctrine/doctrine-fixtures-bundle": "~2.3.0",
+        "guzzlehttp/guzzle": "~5.0",
+        "phpunit/phpunit": "~5.3",
+        "white-october/pagerfanta-bundle": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

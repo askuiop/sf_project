@@ -15,10 +15,12 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('title', null, array(
+                'disabled' => $options['is_edit'],
+            ))
             ->add('content')
-            ->add('createdAt')
-            ->add('updatedAt')
+            #->add('createdAt')
+            #->add('updatedAt')
             ->add('courses', 'entity', array(
                 'class' => 'Jims\StudyBundle\Entity\Course',
                 'property' => 'name',
@@ -35,7 +37,9 @@ class ArticleType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Jims\StudyBundle\Entity\Article'
+            'data_class' => 'Jims\StudyBundle\Entity\Article',
+            'is_edit' => false,
+            'csrf_protection' => false,
         ));
     }
 

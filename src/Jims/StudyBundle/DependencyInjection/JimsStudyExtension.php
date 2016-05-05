@@ -19,8 +19,19 @@ class JimsStudyExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        //var_dump($configs);
+
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+
+        //var_dump($configs);die();
+
+        if (isset($config['title'])) {
+            $container->setParameter('jims_study.title', $config['title']);
+        }
+
+        ///var_dump($config);
+        ///die();
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

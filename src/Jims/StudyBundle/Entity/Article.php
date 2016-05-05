@@ -11,11 +11,12 @@ namespace Jims\StudyBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Jims\StudyBundle\Entity\StUser;
 use Jims\StudyBundle\Entity\Course;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="ArticleRepository")
  * @ORM\Table(name="article")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Article
 {
@@ -26,6 +27,7 @@ class Article
    */
   private $id;
   /**
+   * @Assert\NotBlank(message="plase enter a title!")
    * @ORM\Column(type="string")
    */
   private $title;
@@ -204,4 +206,29 @@ class Article
     {
         return $this->courses;
     }
+
+
+  /**
+   * @ORM\PrePersist()
+   */
+    public function prePersist()
+    {
+      if (empty($this->createdAt)) {
+        $this->setCreatedAt(new \DateTime());
+      }
+
+      if (empty($this->updatedAt)) {
+        $this->setUpdatedAt(new \DateTime());
+      }
+
+
+    }
+
+  /**
+   * @ORM\PreUpdate()
+   */
+  public function preUpdate()
+  {
+    $this->setUpdatedAt(new \DateTime());
+  }
 }

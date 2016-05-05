@@ -36,3 +36,32 @@ study_register_path:
 study_login_out:
     path:     /study/logout
     defaults: { _controller: JimsStudyBundle:Security:logout }
+
+study_api_article_get:
+    path:     /api/article
+    defaults:   { _controller: JimsStudyBundle:Api/Article:get }
+    methods: [ get ]
+
+study_api_article_post:
+    path:     /api/article
+    defaults:
+        _controller: JimsStudyBundle:Api/Article:index
+        _format: json
+    methods: [ post ]
+
+study_api_article_put:
+    path:     /api/article/{title}
+    defaults:   { _controller: JimsStudyBundle:Api/Article:put, _format: json }
+    methods: [ put, patch ]
+
+study_api_article_delete:
+    path:     /api/article/{id}
+    defaults:   { _controller: JimsStudyBundle:Api/Article:delete }
+    methods: [ delete ]
+    requirements:
+        id: \d+
+
+study_api_article_get_for_pager:
+    path:     /api/list
+    defaults:   { _controller: JimsStudyBundle:Api/Article:listForPagination }
+    methods: [ get ]

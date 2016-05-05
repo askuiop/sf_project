@@ -23,6 +23,7 @@ framework:
     csrf_protection: ~
     validation:      { enable_annotations: true }
     #serializer:      { enable_annotations: true }
+    serializer:      { enabled: true }
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
@@ -43,7 +44,9 @@ twig:
     strict_variables: "%kernel.debug%"
     form:
         resources:
+            - 'bootstrap_3_layout.html.twig'
             - 'SonataCoreBundle:Form:datepicker.html.twig'
+            - 'JimsStudyBundle:Form:my_field.html.twig'
     form_themes:
             - 'JimsUiopBundle:Form:form_ueditor_type.html.twig'
             - 'JimsUiopBundle:Form:form_type_test.html.twig'
@@ -167,3 +170,6 @@ sonata_admin:
 
     templates:
         user_block: JimsPeteBundle:Admin:user_block.html.twig
+
+jims_study:
+    title: jimsStudy!!!!

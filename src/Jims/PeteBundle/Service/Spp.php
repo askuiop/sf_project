@@ -25,8 +25,8 @@ class Spp
 
         echo 'xxxxxx';
         $this->param = $param;
-        dump($ary);
-        dump($return);
+        //dump($ary);
+        //dump($return);
     }
 
     public function say()
@@ -35,7 +35,7 @@ class Spp
         echo '<br>this param is :'.$this->param;
         echo '<br>this ary is :'.$this->ary[0];
 
-        dump($this->requestStack);
+        //dump($this->requestStack);
         $request = $this->requestStack->getCurrentRequest();
         $page = $request->query->get('page', 1);
         echo '<br>page:'.$page;

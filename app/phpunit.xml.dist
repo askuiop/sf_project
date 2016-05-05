@@ -15,11 +15,12 @@
         </testsuite>
     </testsuites>
 
-    <!--
+
     <php>
-        <server name="KERNEL_DIR" value="/path/to/your/app/" />
+        <env name="TEST_BASE_URL" value="http://127.0.0.1/app_test.php" />
+        <!--<env name="TEST_BASE_URL" value="http://jims.com/app_test.php" />-->
     </php>
-    -->
+
 
     <filter>
         <whitelist>

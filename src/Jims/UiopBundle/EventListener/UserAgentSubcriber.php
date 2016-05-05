@@ -11,6 +11,7 @@ namespace Jims\UiopBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -43,7 +44,7 @@ class UserAgentSubcriber implements EventSubscriberInterface
     );
   }
 
-  public function onKernelRequest(KernelEvent $event)
+  public function onKernelRequest(GetResponseEvent $event)
   {
     //dump($event);
     //$request = $event->getRequest();
@@ -52,11 +53,33 @@ class UserAgentSubcriber implements EventSubscriberInterface
 
     //dump($this->requestStack->getCurrentRequest());
     //dump($event->getRequest());
+
+
+    if (rand(0,100)>50) {
+      //$response = new Response();
+      //$response->setContent('not lucky!');
+      //$event->setResponse($response);
+    }
+
+    //dump($event->getRequest()->attributes->has('ss'));die();
+
+    if (!$event->getRequest()->attributes->has('ss')) {
+      $event->getRequest()->attributes->set('ss', 'xxxx');
+
+      //$event->getRequest()->attributes->set('_controller', function($ss){
+      //  //匿名函数可以获得 传递给 controller 的参数
+      //  //dump($ss);die();
+      //});
+    }
+
+
+
+
   }
 
   public function onKernelController(FilterControllerEvent $event)
   {
-    //dump($event);
+    //dump($event);die();
   }
 
   public function onKernelResponse(FilterResponseEvent $event)
