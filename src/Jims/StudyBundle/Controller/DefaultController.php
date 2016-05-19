@@ -14,8 +14,27 @@ class DefaultController extends Controller
 {
     public function indexAction($format)
     {
-        $em = $this->getDoctrine()->getManager();
-        $article = $em->getRepository('JimsStudyBundle:Article')->findOneBy(['id' => 2]);
+
+        $filter = 'test';
+        $em = $this->getDoctrine()->getRepository('JimsStudyBundle:Article');
+        $qb = $em->createQueryBuilder('Article')
+          ->andWhere('Article.title LIKE :filter')
+          ->setParameter('filter', '%'.$filter.'%');
+
+        if(1){ // 条件
+            $qb->andWhere('Article.content LIKE :filter')
+                ->setParameter('filter', '%'.$filter.'%');
+        }
+
+        $article = $qb->getQuery()->getResult();
+
+
+
+        dump($qb->getQuery());die();
+
+
+        //$em = $this->getDoctrine()->getManager();
+        //$article = $em->getRepository('JimsStudyBundle:Article')->findOneBy(['id' => 2]);
 
         //$article = new Article();
         //$article->setTitle('xxxx');

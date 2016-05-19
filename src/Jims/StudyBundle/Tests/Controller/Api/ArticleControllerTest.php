@@ -143,6 +143,11 @@ EOF;
 
   public function testPagination()
   {
+    $this->createArticle(array(
+      'title' => 'not this',
+      'content' => 'not',
+    ));
+
     for ($i=0; $i<25; $i++ ) {
       $this->createArticle(array(
         'title' => 'test_'.$i ,
@@ -151,7 +156,7 @@ EOF;
     }
 
 
-    $response = $this->client->get('api/list');
+    $response = $this->client->get('api/list?filter=test');
 
     //page 1
     $this->assertEquals(200, $response->getStatusCode());
@@ -188,6 +193,23 @@ EOF;
     $this->asserter()->assertResponsePropertyDoesNotExist($response, 'items[5].name');
     $this->asserter()->assertResponsePropertyEquals($response, 'count', 5);
 
+  }
+
+  public function testShow()
+  {
+    $this->createArticle(array(
+      'title' => 'test',
+      'content' => 'test'
+    ));
+
+    $response = $this->client->get('api/article/test');
+
+
+    $this->assertEquals(200, $response->getStatusCode());
+
+
+    $this->asserter()->assertResponsePropertyEquals($response, 'data[0].content', 'test');
+    $this->asserter()->assertResponsePropertyEquals($response, 'data[0].content', 'test');
   }
 
 }

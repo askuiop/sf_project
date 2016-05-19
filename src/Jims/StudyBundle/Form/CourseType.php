@@ -15,9 +15,14 @@ class CourseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('name', 'text', array(
+                'attr' => array(
+                    'class' => 'xxxx',
+                    'style' => 'color:red'
+                )
+            ))
             ->add('createdAt')
-            ->add('updateAt')
+            ->add('updatedAt')
         ;
     }
     

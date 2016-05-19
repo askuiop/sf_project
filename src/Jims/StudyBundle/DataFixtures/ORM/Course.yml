@@ -1,0 +1,11 @@
+Jims\StudyBundle\Entity\Course:
+    Course1:
+        name: <name()>
+        createdAt: <dtObject()>
+        updatedAt: <dtObject()>
+
+    Course{2..10}:
+        #name: <current()>
+        name: <courseName()>
+        createdAt: <dtObject()>
+        updatedAt: <dtObject()>

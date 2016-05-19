@@ -1,0 +1,7 @@
+Jims\StudyBundle\Entity\StUser:
+    Admin:
+        username: <nothing()>
+        plainPassword: admin
+        email: <email()>
+        is_availdable: 1
+        roles: ["ROLE_USER"]

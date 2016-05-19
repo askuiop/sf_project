@@ -9,7 +9,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Createdat</th>
-                <th>Updateat</th>
+                <th>Updatedat</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -19,7 +19,7 @@
                 <td><a href="{{ path('course_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
                 <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.updateAt %}{{ entity.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.Updatedat %}{{ entity.Updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                 <ul>
                     <li>

@@ -65,3 +65,8 @@ study_api_article_get_for_pager:
     path:     /api/list
     defaults:   { _controller: JimsStudyBundle:Api/Article:listForPagination }
     methods: [ get ]
+
+study_api_article_show:
+    path:     /api/article/{title}
+    defaults:   { _controller: JimsStudyBundle:Api/Article:show }
+    methods: [ get ]

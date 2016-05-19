@@ -12,8 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArticleRepository extends EntityRepository
 {
-  public function findAllQueryBuilder()
+  public function findAllQueryBuilder($filter = '')
   {
-    return $this->createQueryBuilder('Article');
+    $qb =  $this->createQueryBuilder('Article');
+
+    if ($filter) {
+        $qb->andWhere('Article.title LIKE :filter OR Article.content LIKE :filter')
+          ->setParameter('filter', '%'.$filter.'%');
+    }
+    return $qb;
   }
 }

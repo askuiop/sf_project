@@ -23,48 +23,52 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 
 class ArticleController extends Controller
 {
+    public function showAction(Request $request, $title)
+    {
+        $qb = $this->getDoctrine()->getRepository('JimsStudyBundle:Article')->createQueryBuilder('article');
+        $query = $qb->andWhere('article.title LIKE :title')
+            ->setParameter('title', $title)
+            ->getQuery();
+        $result = $query->getOneOrNullResult();
+
+
+        $propertyNormalizer = new PropertyNormalizer();
+
+        $callback = function ($dateTime) {
+            return $dateTime instanceof \DateTime
+              ? $dateTime->format(\DateTime::ISO8601)
+              : '';
+        };
+        $propertyNormalizer->setCallbacks(array('createdAt' => $callback, 'updatedAt'=>$callback));
+
+        $encoder = new JsonEncode();
+        $serialize = new Serializer([$propertyNormalizer], [$encoder]);
+
+        $json = $serialize->serialize($result, 'json');
+
+
+        //dump($ary);die();
+        //dump($json);die();
+
+        return new Response($json, 200, array(
+          'Content-Type' => 'application/json'
+        ));
+
+
+    }
     public function listForPaginationAction(Request $request)
     {
-        $page = $request->query->get('page', 1);
+        $filter = $request->query->get('filter');
+
 
         $qb = $this->getDoctrine()
           ->getRepository('JimsStudyBundle:Article')
-          ->findAllQueryBuilder();
-
-        $adapter = new DoctrineORMAdapter($qb);
-
-        $pagerfanta = new Pagerfanta($adapter);
-        $pagerfanta->setMaxPerPage(10);
-        $pagerfanta->setCurrentPage($page);
-
-        //dump($pagerfanta->getCurrentPageResults());die();
-
-        $articles = [];
-        foreach ($pagerfanta->getCurrentPageResults() as $result) {
-            $articles[] = $result;
-        }
-        //dump($articles);die();
-
-        $paginatedCollection = new PaginatedCollection($articles, $pagerfanta->getNbResults() );
-
+          ->findAllQueryBuilder($filter);
         $route = 'study_api_article_get_for_pager';
-        $routeParams = array();
-        $createLinkUrl = function($targetPage) use ($route, $routeParams) {
-            return $this->generateUrl($route, array_merge(
-              $routeParams,
-              array('page' => $targetPage)
-            ));
-        };
 
-        $paginatedCollection->addLink('self', $createLinkUrl($page));
-        $paginatedCollection->addLink('first', $createLinkUrl(1));
-        $paginatedCollection->addLink('last', $createLinkUrl($pagerfanta->getNbPages()));
-        if ($pagerfanta->hasNextPage()) {
-            $paginatedCollection->addLink('next', $createLinkUrl($pagerfanta->getNextPage()));
-        }
-        if ($pagerfanta->hasPreviousPage()) {
-            $paginatedCollection->addLink('prev', $createLinkUrl($pagerfanta->getPreviousPage()));
-        }
+
+        $paginatedCollection = $this->get('pagination_factory')
+          ->createCollection($qb, $request, $route );
 
 
         $response = $this->createApiResponse($paginatedCollection, 200);

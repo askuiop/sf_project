@@ -1,0 +1,4 @@
+Jims\StudyBundle\Entity\Article:
+    Article{1..10}:
+        title: <sentence()>
+        content: <paragraph()>

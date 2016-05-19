@@ -35,7 +35,7 @@ class Course
   /**
    * @ORM\Column(type="datetime")
    */
-  private $updateAt;
+  private $updatedAt;
 
   /**
    * @var
@@ -95,17 +95,17 @@ class Course
   /**
    * @return mixed
    */
-  public function getUpdateAt()
+  public function getupdatedAt()
   {
-    return $this->updateAt;
+    return $this->updatedAt;
   }
 
   /**
-   * @param mixed $updateAt
+   * @param mixed $updatedAt
    */
-  public function setUpdateAt($updateAt)
+  public function setupdatedAt($updatedAt)
   {
-    $this->updateAt = $updateAt;
+    $this->updatedAt = $updatedAt;
   }
 
 
