@@ -9,6 +9,7 @@ services:
 
     form.type.ueditor:
         class: Jims\UiopBundle\Form\Type\UeditorType
+        arguments: [ "@kernel" ]
         tags:
             - { name: form.type , alias: ueditor }
 

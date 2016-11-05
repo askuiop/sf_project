@@ -311,8 +311,8 @@ class User implements UserInterface, \Serializable
     {
         return serialize(array(
             $this->id,
-            $this->userName,
-            $this->psw,
+            $this->username,
+            $this->password,
             // see section on salt below
             // $this->salt,
         ));
@@ -323,8 +323,8 @@ class User implements UserInterface, \Serializable
     {
         list (
             $this->id,
-            $this->userName,
-            $this->psw,
+            $this->username,
+            $this->password,
             // see section on salt below
             // $this->salt
             ) = unserialize($serialized);

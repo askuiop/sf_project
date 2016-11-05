@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class DefaultController extends BaseController
 {
@@ -59,6 +60,12 @@ class DefaultController extends BaseController
      */
     public function addUserAction(Request $request)
     {
+
+
+        $user = $this->getDoctrine()->getRepository('JimsPeteBundle:User')->findOneBy(['id'=>1]);
+        $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+        $this->get('security.token_storage')->setToken($token);
+        $this->get('session')->set('_security_main', serialize($token));
 
         //$translator = $this->get("translator");
         //dump($translator->trans('title.homepage'));

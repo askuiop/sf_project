@@ -29,7 +29,7 @@ class SecurityController extends Controller
     public function registerAction(Request $request, $ss )
     {
         dump($this->container->getParameter('jims_study.title'));
-        /*
+        /*-------------- form  resources !---------------
         $this->container->
         dump($this->container->getParameter('twig.form.resources'));
 

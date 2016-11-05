@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b3911bb093435a93505537a420c38d09",
-    "content-hash": "0040ceb18e3ab81a41d1686cdcc8e875",
+    "hash": "af0f86e850e18bf8409ba9ddfbb940b1",
+    "content-hash": "b7d55daa0ad012d0829bcf39533be34e",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -1340,6 +1340,57 @@
                 "sql"
             ],
             "time": "2014-01-12 16:20:24"
+        },
+        {
+            "name": "jims/editor-hub-bundle",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/askuiop/JimsEditorHubBundle.git",
+                "reference": "572418a341b8a0f575006251ae5e940349f87e4b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/askuiop/JimsEditorHubBundle/572418a341b8a0f575006251ae5e940349f87e4b.zip",
+                "reference": "572418a341b8a0f575006251ae5e940349f87e4b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3|^7.0",
+                "symfony/form": "^2.3|^3.0",
+                "symfony/framework-bundle": "^2.3|^3.0",
+                "twig/twig": "^1.1"
+            },
+            "require-dev": {
+                "symfony/twig-bundle": "^2.3|^3.0",
+                "symfony/yaml": "^2.3|^3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": []
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jims\\EditorHubBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jims wu",
+                    "email": "askfilm918@gmail.com"
+                }
+            ],
+            "description": "ueditor and umeditor for Symfony 2/3.",
+            "keywords": [
+                "editor",
+                "ueditor",
+                "umeditor"
+            ],
+            "time": "2016-07-04 02:41:45"
         },
         {
             "name": "knplabs/knp-menu",
